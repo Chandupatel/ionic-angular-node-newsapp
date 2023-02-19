@@ -1,0 +1,30 @@
+<ion-header>
+	<ion-toolbar color="danger">
+		<!-- <ion-buttons slot="start" routerLink="/home">
+			<ion-icon name="arrow-round-back" size="large"></ion-icon>
+		</ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-back-button style="color: white" icon="arrow-round-back"></ion-back-button>
+    </ion-buttons>
+
+		<ion-title>News Description</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+<!-- {{news[0].Title}} -->
+
+<ion-card *ngIf="news">
+        <ion-card-header>
+          <ion-card-title><h2>{{news[0].Title}}</h2></ion-card-title>
+        </ion-card-header>
+        <ion-img src="{{news[0].Image}}" style="width:100%;height: 100%"></ion-img>
+        <ion-card-content style="font-size: 20px;  text-align: justify;
+  text-justify: inter-word;">
+          {{news[0].Description}}
+        </ion-card-content>
+      </ion-card>
+
+
+</ion-content>

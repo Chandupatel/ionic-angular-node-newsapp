@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar  color="danger">
+  	<ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>My Activity</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list *ngFor="let i of activity" >
+
+<ion-item>
+<ion-thumbnail slot="start" (click)="desc(i._id)">
+    <img src={{i.Image}}>
+  </ion-thumbnail>
+
+  <ion-label text-wrap (click)="desc(i._id)">
+    <b>{{i.Title}}</b><br>
+    <!-- {{i.name}} -->
+  </ion-label>
+
+  <!-- <ion-icon name="more" slot="end" (click)="newsPopover($event,i._id)"></ion-icon> -->
+
+</ion-item>
+
+
+  </ion-list>
+<ion-back-button></ion-back-button>
+</ion-content>

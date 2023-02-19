@@ -1,0 +1,21 @@
+
+
+<table class="table table-striped" style="width: 70%;margin: 0 auto;text-align: center;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let x of users">
+      <th scope="row">{{x.name}}</th>
+      <td>{{x.email}}</td>
+      <td>
+        <i class={{x.st}} (click)="statusFn(x.email,x.status)"></i> &nbsp;<!-- fa fa-thumbs-up -->
+        <i class="fa fa-pencil-square-o" routerLink="./userupdate/{{x.email}}"></i></td>
+    </tr>
+  </tbody>
+</table>
+

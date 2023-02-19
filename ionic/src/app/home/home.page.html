@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar  color="danger">
+
+    <ng-template #temp>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Newz</ion-title>
+      <!-- <ion-icon name="notifications-outline" slot="end"></ion-icon> -->
+      <ion-icon name="more" slot="end" (click)="optionsPopover($event)"></ion-icon>
+    </ng-template>
+
+
+    <ion-searchbar (ionBlur)="searchbar()" *ngIf="data else temp" placeholder="Search News"></ion-searchbar>
+
+
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-toolbar color="danger" *ngIf="tabs">
+    <ion-segment scrollable value="Top">
+<!--       <ion-segment-button value="top" (click)="newsFn('Top')">
+        <ion-label><b>Top</b></ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="bollywood" (click)="newsFn('Bollywood')">
+        <ion-label ><b>Bollywood</b></ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="sports" (click)="newsFn('Sports')">
+        <ion-label><b>Sports</b></ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="business" (click)="newsFn('Business')">
+        <ion-label><b>Business</b></ion-label>
+      </ion-segment-button> -->
+      <ion-segment-button value="Top" (click)="topnewsFn()">
+        <ion-label><b>Top</b></ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button *ngFor="let x of tabs" (click)="newsFn(x.name)">
+       <ion-label ><b> {{x.name}} </b></ion-label>
+     </ion-segment-button>
+
+   </ion-segment>
+ </ion-toolbar>
+
+
+
+ <ion-card class="welcome-card" *ngIf="news else ntemp">
+  <ion-img src="{{news[0].Image}}" class="image"></ion-img>
+  <ion-card-header>
+    <ion-card-title>{{headline}}</ion-card-title>
+  </ion-card-header>
+</ion-card>
+
+<ion-list *ngFor="let i of news" >
+
+  <ion-item >
+    <ion-thumbnail slot="start" (click)="desc(i._id)">
+      <img src={{i.Image}}>
+    </ion-thumbnail>
+
+    <ion-label text-wrap (click)="desc(i._id)">
+      <b>{{i.Title}}</b><br>
+      <!-- {{i.name}} -->
+    </ion-label>
+
+    <ion-icon name="more" slot="end" (click)="newsPopover($event,i._id)"></ion-icon>
+
+  </ion-item>
+
+
+</ion-list>
+<ng-template #ntemp>
+<!--   <ion-item>
+    <b>No news to Show...!!</b>
+  </ion-item> -->
+  <ion-progress-bar type="indeterminate"></ion-progress-bar>
+</ng-template>
+
+</ion-content>

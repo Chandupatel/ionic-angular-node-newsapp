@@ -1,0 +1,84 @@
+<div style="width: 70%;margin: 0 auto;">
+	<form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)">
+	<div class="form-group">
+
+		<label for="title">News Title:</label>
+		<input type="text" class="form-control" id="title" formControlName="title">
+
+
+<div>
+  <ng-container *ngFor="let validation of validation_messages.title" >
+    <div class="error-message" *ngIf="formdata.get('title').hasError(validation.type)
+    && (formdata.get('title').dirty || formdata.get('title').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+		<label for="desc">News Description:</label>
+		<textarea class="form-control" rows="5" id="desc" formControlName="desc"></textarea>
+
+
+<div>
+  <ng-container *ngFor="let validation of validation_messages.desc" >
+    <div class="error-message" *ngIf="formdata.get('desc').hasError(validation.type)
+    && (formdata.get('desc').dirty || formdata.get('desc').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+
+		<label for="img">News Image:</label>
+		<input type="text" class="form-control" id="img" formControlName="img">
+
+
+<div>
+  <ng-container *ngFor="let validation of validation_messages.img" >
+    <div class="error-message" *ngIf="formdata.get('img').hasError(validation.type)
+    && (formdata.get('img').dirty || formdata.get('img').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+
+		<label for="type">News Type:</label>   
+		<select class="form-control" id="type" formControlName="type" >
+			<option *ngFor="let x of tabs">{{x.name}}</option>
+		</select>
+		
+
+<div>
+  <ng-container *ngFor="let validation of validation_messages.type" >
+    <div class="error-message" *ngIf="formdata.get('type').hasError(validation.type)
+    && (formdata.get('type').dirty || formdata.get('type').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+
+		<label for="priority">Priority:</label>   
+		<select class="form-control" id="priority" formControlName="priority" >
+			<option>High</option>
+			<option>Low</option>
+		</select>
+	
+
+<div>
+  <ng-container *ngFor="let validation of validation_messages.priority" >
+    <div class="error-message" *ngIf="formdata.get('priority').hasError(validation.type)
+    && (formdata.get('priority').dirty || formdata.get('priority').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+
+	</div>
+	<button type="submit" class="btn btn-primary" [disabled]="!formdata.valid">
+	Submit</button>
+
+</form>
+</div>

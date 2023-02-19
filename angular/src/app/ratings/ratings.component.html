@@ -1,0 +1,17 @@
+<table class="table table-striped" style="width: 70%;margin: 0 auto;text-align: center;">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">User Name</th>
+      <th scope="col">Ratings</th>
+
+    </tr>
+  </thead>
+   <tbody>
+    <tr *ngFor="let x of users">
+      <th scope="row">{{x.name}}</th>
+      <td>{{x.ratings}}</td>
+      <!-- <td><i class="fa fa-pencil-square-o" routerLink="./userupdate/{{x.email}}"></i></td> -->
+    </tr>
+
+  </tbody>
+</table>

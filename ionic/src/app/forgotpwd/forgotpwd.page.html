@@ -1,0 +1,119 @@
+<ion-header>
+	<ion-toolbar color="danger">
+		<ion-buttons slot="start" routerLink="/login">
+			<ion-icon name="arrow-round-back" size="large"></ion-icon>
+		</ion-buttons>
+		<ion-title>Forgot Password</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content style="text-align:center" class="ion-padding" class="background">
+<div class="transbox">
+	<ng-template #temp>
+
+<form [formGroup]="formdata" (ngSubmit)="continue(formdata.value)">
+		<ion-item >
+			<ion-label position="floating">Email:</ion-label>
+			<ion-input formControlName="email"></ion-input>
+		</ion-item>
+
+<div>
+  <ng-container *ngFor="let validation of validation_messages.email" >
+    <div class="error-message" *ngIf="
+    formdata.get('email').hasError(validation.type) && (
+    formdata.get('email').dirty || 
+    formdata.get('email').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+
+
+<ion-item>
+  <ion-label position="floating">Security Question:</ion-label>
+  <ion-select formControlName="ques">
+    <ion-select-option value="city"  >Birth place?</ion-select-option>
+    <ion-select-option value="school">First school?</ion-select-option>
+    <ion-select-option value="movie">Favorite movie?</ion-select-option>
+    <ion-select-option value="color">Favorite color?</ion-select-option>
+  </ion-select>
+</ion-item>
+<div>
+  <ng-container *ngFor="let validation of validation_messages.ques" >
+    <div class="error-message" *ngIf="formdata.get('ques').hasError(validation.type)
+    && (formdata.get('ques').dirty || formdata.get('ques').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+
+<ion-item>
+    <ion-label position="floating">Answer:</ion-label>
+<ion-input formControlName="ans" id="security" type="text"></ion-input>
+</ion-item>
+
+<div>
+  <ng-container *ngFor="let validation of validation_messages.ans" >
+    <div class="error-message" *ngIf="formdata.get('ans').hasError(validation.type)
+    && (formdata.get('ans').dirty || formdata.get('ans').touched)">
+    <p>{{validation.message}}</p>
+  </div>
+</ng-container>
+</div>
+
+		 <ion-button type="submit" style="width:50%;margin-bottom: 20px" color="danger" [disabled]="!formdata.valid">Continue</ion-button>
+</form>
+
+	</ng-template>
+
+
+	<ion-list *ngIf="data else temp">
+		<b>Please enter a New Password</b>
+
+<form [formGroup]="formdata1" (ngSubmit)="submit(formdata1.value)">
+
+<div formGroupName="matching_passwords">
+
+    <ion-item>
+      <ion-label position="stacked">New Password:</ion-label>
+      <ion-input  id="pwd" type="Password" formControlName="pwd"></ion-input>
+    </ion-item>
+
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.pwd">
+          <div class="error-message" *ngIf="formdata1.get('matching_passwords').get('pwd').hasError(validation.type) && (formdata1.get('matching_passwords').get('pwd').dirty || formdata1.get('matching_passwords').get('pwd').touched)">
+           {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+    <ion-item>
+      <ion-label position="stacked">Confirm Password:</ion-label>
+      <ion-input  id="confirm" type="Password" formControlName="confirm"></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.confirm">
+          <div class="error-message" *ngIf="formdata1.get('matching_passwords').get('confirm').hasError(validation.type) && (formdata1.get('matching_passwords').get('confirm').dirty || formdata1.get('matching_passwords').get('confirm').touched)">
+         {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <!-- These validations are for the form group -->
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+        <div class="error-message" *ngIf="
+        formdata1.get('matching_passwords').hasError(validation.type) && (formdata1.get('matching_passwords').get('confirm').dirty || formdata1.get('matching_passwords').get('confirm').touched)">
+        {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+		<ion-button type="submit" style="width:60%;" color="danger" [disabled]="!formdata1.valid">Change Password</ion-button>
+</form>
+
+	</ion-list>
+</div>
+</ion-content>

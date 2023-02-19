@@ -1,0 +1,32 @@
+ion-icon
+{
+font-size: 30px
+}
+
+.error-message
+{
+  color: red;
+  font-size: 14px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+ion-content{
+    --background: #fff url('../../assets/images/sign.jpg') no-repeat center center / cover;
+}
+
+
+
+div.transbox {
+  margin: 25px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  /*filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+
+div.transbox ion-item {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+}

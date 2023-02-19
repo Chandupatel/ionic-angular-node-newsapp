@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar  color="danger">
+    <ion-title>Login to Newz</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="text-align:center" class="ion-padding" class="background">
+  <br>
+  <br>
+<!--   <ion-button shape="round" color="primary" (click)="ss()">
+    <ion-icon slot="start" name="logo-google"></ion-icon>
+  Sign in with Google</ion-button><br><br>
+  Or Login -->
+<div class="transbox">
+<form [formGroup]="formdata" (ngSubmit)="login(formdata.value)" >
+  <ion-item>
+    <ion-label position="floating">Email:</ion-label>
+    <ion-input required type="text" formControlName="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Password:</ion-label>
+    <ion-input required type="password" formControlName="pwd"></ion-input>
+  </ion-item><br><br>
+  <b>By signing in, you agree to Terms & Conditions</b>
+
+  <br><br>
+  <!-- <ion-button  style="width:50%;" color="danger"  routerLink="/home">Login</ion-button> -->
+
+  <ion-button type="submit" style="width:50%;" color="danger" [disabled]="!formdata.valid">Login</ion-button>
+
+</form>
+<br>
+  <ion-row class="ion-align-items-end" style="height:100px; padding:10px;">
+
+    <ion-col>New User? <ion-text  color="danger" [routerDirection]="'root'" [routerLink]="'/signup'"><b> SIGNUP </b></ion-text>
+    </ion-col>
+    <ion-col>
+      <ion-text  color="danger" [routerDirection]="'root'" [routerLink]="'/forgotpwd'"> <b>FORGOT PASSWORD </b></ion-text>
+    </ion-col>
+  </ion-row>
+
+ 
+</div>
+
+
+</ion-content>

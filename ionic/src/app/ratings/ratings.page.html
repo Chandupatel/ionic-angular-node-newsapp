@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="danger">
+  	<ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Rate Us</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  style="text-align:center" class="ion-padding">
+
+
+  <ng-template #temp>
+
+ <div class="transbox"> 
+  <h1>Your ratings: </h1>
+    <h2>{{rates}} Star(s) </h2>
+  <span *ngFor="let x of star">  <ion-icon name="star" size="large"></ion-icon> </span>
+  <!--   <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon> -->
+
+  </div>
+</ng-template>
+<div *ngIf="data else temp">
+<ion-item color="transparent">
+<div style="margin-top: 40%" class="rating" >
+    <input type="radio" id="star5" name="rating" [(ngModel)]="rating" value="5" />
+    <label for="star5" title="star5">5 stars</label>
+    <input type="radio" id="star4" name="rating" [(ngModel)]="rating" value="4" /><label for="star4" title="star4">4 stars</label>
+    <input type="radio" id="star3" name="rating" [(ngModel)]="rating" value="3" /><label for="star3" title="star3">3 stars</label>
+    <input type="radio" id="star2" name="rating" [(ngModel)]="rating" value="2" /><label for="star2" title="star2">2 stars</label>
+    <input type="radio" id="star1" name="rating" [(ngModel)]="rating" value="1" /><label for="star1" title="star1">1 star</label>
+</div>
+</ion-item>
+    <div>
+ 
+        <ion-button style="width:50%; margin-top: 10%" color="danger" (click)="rate()">Submit</ion-button>
+</div>
+</div>
+
+
+</ion-content>

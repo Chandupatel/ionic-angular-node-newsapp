@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar  color="danger">
+  	<ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="text-align:center">
+
+<div class="transbox">
+<ng-template #temp>      
+   <h2> Edit Profile</h2>
+    <ion-item>
+  <ion-label  position="stacked" ><b>Name:</b></ion-label>
+  <ion-input  [(ngModel)]="name"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked"><b>Contact: </b></ion-label>
+  <ion-input [(ngModel)]="contact"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="stacked"><b>Email: </b></ion-label>
+  <ion-input disabled [(ngModel)]="email"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label position="stacked"><b>Gender: </b></ion-label>
+  <ion-input disabled [(ngModel)]="gender"></ion-input>
+</ion-item>
+  <ion-button  style="width:50%;" color="danger" (click)="Save()">Save Details</ion-button>
+
+<br>
+<ion-button size="small" style="width:50%;margin-bottom: 20px" fill="outline" (click)="changebtn()">Change Password</ion-button>
+
+
+</ng-template>
+
+<form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)">
+<ion-list *ngIf="data else temp">
+    <h3>Change Password</h3>
+
+    <ion-item>
+      <ion-label position="stacked">Old Password:</ion-label>
+      <ion-input  id="oldpwd" type="Password" formControlName="oldpwd"></ion-input>
+    </ion-item>
+
+<div formGroupName="matching_passwords">
+
+    <ion-item>
+      <ion-label position="stacked">New Password:</ion-label>
+      <ion-input  id="newpwd" type="Password" formControlName="newpwd"></ion-input>
+    </ion-item>
+
+      <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.newpwd">
+          <div class="error-message" *ngIf="formdata.get('matching_passwords').get('newpwd').hasError(validation.type) && (formdata.get('matching_passwords').get('newpwd').dirty || formdata.get('matching_passwords').get('newpwd').touched)">
+           {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+
+    <ion-item>
+      <ion-label position="stacked">Confirm Password:</ion-label>
+      <ion-input  id="confirm" type="Password" formControlName="confirm"></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+        <ng-container *ngFor="let validation of validation_messages.confirm">
+          <div class="error-message" *ngIf="formdata.get('matching_passwords').get('confirm').hasError(validation.type) && (formdata.get('matching_passwords').get('confirm').dirty || formdata.get('matching_passwords').get('confirm').touched)">
+         {{ validation.message }}
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <!-- These validations are for the form group -->
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+        <div class="error-message" *ngIf="
+        formdata.get('matching_passwords').hasError(validation.type) && (formdata.get('matching_passwords').get('confirm').dirty || formdata.get('matching_passwords').get('confirm').touched)">
+        {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+
+
+
+    <ion-button type="submit" style="width:50%;" color="danger" [disabled]="!formdata.valid">Change Password</ion-button>
+
+</ion-list>
+</form>
+</div>
+<!-- <ion-button style="width:45%;"></ion-button> -->
+</ion-content>
